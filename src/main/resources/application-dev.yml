@@ -11,3 +11,9 @@ spring:
     direct: # 路由模式
       acknowledge-mode: manual # 人为地获取到channel之后调用方法向server发送ack（或消费失败时的nack）信息
       prefetch: 100 # 指定一个消费者一次可以从Rabbit中获取多少条消息并缓存在client中,一旦达到改值，Rabbit将会停止投递新的message到该consumer中直到它发出ack
+  # 实现实时通信
+  mqtt:
+    url: tcp://localhost:1883
+    username: admin
+    password: admin
+    defaultTopic: defaultTopic
