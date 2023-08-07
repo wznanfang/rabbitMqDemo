@@ -47,12 +47,9 @@ public class MqttConsumerConfig {
     @Bean
     @ServiceActivator(inputChannel = "mqttInputChannel")
     public MessageHandler handler() {
-        return new MessageHandler() {
-            @Override
-            public void handleMessage(Message<?> message) throws MessagingException {
-                //处理订阅消息
-                log.info("handleMessage : {}", message.getPayload());
-            }
+        return message -> {
+            //处理订阅消息
+            log.info("handleMessage : {}", message.getPayload());
         };
     }
 

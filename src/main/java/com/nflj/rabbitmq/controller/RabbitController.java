@@ -43,7 +43,7 @@ public class RabbitController {
         try {
             for (int i = 0; i < 5; i++) {
                 simpleProducer.send();
-                Thread.sleep(1000);
+                Thread.sleep(1);
             }
         } catch (InterruptedException e) {
             e.printStackTrace();

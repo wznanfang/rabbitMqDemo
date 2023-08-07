@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Component
-@ConfigurationProperties(prefix = "spring.rabbitmq.mqtt")
+@ConfigurationProperties(prefix = "spring.mqtt")
 public class MqttConfig {
 
 

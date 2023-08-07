@@ -20,12 +20,9 @@ public class DirectProducer {
     private final String[] keys = {"orange", "black", "green"};
 
     public void send(int index) {
-        StringBuilder builder = new StringBuilder("Hello to ");
         int limitIndex = index % 3;
         String key = keys[limitIndex];
-        builder.append(key).append(' ');
-        builder.append(index + 1);
-        String message = builder.toString();
+        String message = "Hello to " + key + ' ' + (index + 1);
         rabbitTemplate.convertAndSend(exchangeName, key, message);
         log.info(" [路由模式生产者发送消息] Sent '{}'", message);
     }
