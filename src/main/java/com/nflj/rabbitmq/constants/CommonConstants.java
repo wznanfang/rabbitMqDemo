@@ -8,6 +8,7 @@ public class CommonConstants {
 
 
     public static final String SIMPLE_QUEUE_NAME = "simple";
+    public static final String WORK_QUEUE_NAME = "work";
 
 
 

@@ -1,8 +1,13 @@
 package com.nflj.rabbitmq.rabbitMq.work;
 
+import com.nflj.rabbitmq.constants.CommonConstants;
+import com.rabbitmq.client.Channel;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.amqp.rabbit.annotation.RabbitHandler;
+import org.springframework.amqp.core.Message;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
+import org.springframework.context.annotation.Configuration;
+
+import java.io.IOException;
 
 /**
  * 消费者
@@ -11,22 +16,16 @@ import org.springframework.amqp.rabbit.annotation.RabbitListener;
  * @DATE: 2020/11/17 13:16
  */
 @Slf4j
-@RabbitListener(queues = "work")
+@Configuration
 public class WorkConsumer2 {
 
     /**
      * 工作模式
      */
-    private final int instance;
-
-    public WorkConsumer2(int i) {
-        this.instance = i;
-    }
-
-    @RabbitHandler
-    public void receive(String in) {
-        log.info("instance {} [消费者2收到消息] Received '{}'", this.instance, in);
-
+    @RabbitListener(queues = CommonConstants.WORK_QUEUE_NAME)
+    public void receive(Message message, Channel channel) throws IOException {
+        log.info(" [消费者{}接收到消息] Received '{}'", 2, new String(message.getBody()));
+        channel.basicAck(message.getMessageProperties().getDeliveryTag(), false);
     }
 
 }
