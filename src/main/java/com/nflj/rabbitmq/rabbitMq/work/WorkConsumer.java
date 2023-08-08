@@ -17,15 +17,21 @@ import java.io.IOException;
  */
 @Slf4j
 @Configuration
-public class WorkConsumer1 {
+public class WorkConsumer {
 
 
     /**
      * 工作模式
      */
     @RabbitListener(queues = CommonConstants.WORK_QUEUE_NAME)
-    public void receive(Message message, Channel channel) throws IOException {
+    public void receive1(Message message, Channel channel) throws IOException {
         log.info(" [消费者{}接收到消息] Received '{}'", 1, new String(message.getBody()));
+        channel.basicAck(message.getMessageProperties().getDeliveryTag(), false);
+    }
+
+    @RabbitListener(queues = CommonConstants.WORK_QUEUE_NAME)
+    public void receive2(Message message, Channel channel) throws IOException {
+        log.info(" [消费者{}接收到消息] Received '{}'", 2, new String(message.getBody()));
         channel.basicAck(message.getMessageProperties().getDeliveryTag(), false);
     }
 
