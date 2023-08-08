@@ -13,6 +13,6 @@ spring:
   # 实现实时通信
   mqtt:
     url: tcp://localhost:1883
-    username: admin
-    password: admin
-    defaultTopic: defaultTopic
+    username: guest
+    password: guest
+    defaultTopic: mqttTopic
