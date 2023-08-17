@@ -9,7 +9,7 @@ spring:
     publisher-confirm-type: correlated #开启 confirm 确认机制,确认消息发送到交换机(Exchange),是否确定回调
     listener:
       simple:
-        acknowledge-mode: MANUAL
+        acknowledge-mode: manual # 开启消费者消息确认
   # 实现实时通信
   mqtt:
     url: tcp://localhost:1883

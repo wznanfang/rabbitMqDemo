@@ -21,14 +21,14 @@ import java.io.IOException;
 public class DirectConsumer {
 
 
-    @RabbitListener(bindings = @QueueBinding(value = @Queue(value = CommonConstants.DIRECT_QUEUE_NAME),
+    @RabbitListener(bindings = @QueueBinding(value = @Queue(value = CommonConstants.DIRECT_QUEUE_NAME, durable = "true"),
             exchange = @Exchange(value = CommonConstants.DIRECT_EXCHANGE_NAME),
             key = {CommonConstants.DIRECT_QUEUE_KEY1, CommonConstants.DIRECT_QUEUE_KEY3}))
     public void receive1(Message message, Channel channel) {
         receive(message, channel, 1);
     }
 
-    @RabbitListener(bindings = @QueueBinding(value = @Queue(value = CommonConstants.DIRECT_QUEUE_NAME),
+    @RabbitListener(bindings = @QueueBinding(value = @Queue(value = CommonConstants.DIRECT_QUEUE_NAME, durable = "true"),
             exchange = @Exchange(value = CommonConstants.DIRECT_EXCHANGE_NAME),
             key = {CommonConstants.DIRECT_QUEUE_KEY2, CommonConstants.DIRECT_QUEUE_KEY3}))
     public void receive2(Message message, Channel channel) {
